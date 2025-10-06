@@ -1,270 +1,505 @@
-import { useState, useEffect } from "react";
 import Head from "next/head";
-import { Inter } from "next/font/google";
+import Image from "next/image";
 
-const inter = Inter({ subsets: ["latin"] });
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+  <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-amber-500 mb-6 tracking-tight">
+    {children}
+  </h2>
+);
+
+const SectionSubtitle = ({ children }: { children: React.ReactNode }) => (
+  <p className="text-lg text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+    {children}
+  </p>
+);
+
+const FeatureIcon = ({ children }: { children: React.ReactNode }) => (
+  <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-amber-100 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-lg group-hover:from-yellow-200 group-hover:to-amber-200 transition-all duration-300">
+    {children}
+  </div>
+);
 
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    // Set launch date to 30 days from now
-    const launchDate = new Date();
-    launchDate.setDate(launchDate.getDate() + 30);
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = launchDate.getTime() - now;
-
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          ),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <>
       <Head>
-        <title>Dan Realestate - Coming Soon</title>
+        <title>Dan Realestate - Web3 Real Estate Platform</title>
         <meta
           name="description"
-          content="Premier destination for exceptional real estate opportunities. Coming soon with premium listings, market insights, and expert guidance."
+          content="Dan Realestate brings Web3 technology to the real estate market, creating a transparent, secure, and decentralized platform for property transactions using DAN TOKEN."
         />
       </Head>
       <div
-        className={`min-h-screen bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 ${inter.className}`}
+        className="min-h-screen bg-white text-gray-800"
+        style={{ fontFamily: "prompt, Arial, Helvetica, sans-serif" }}
       >
-        <div className="absolute top-0 -z-10 h-full w-full bg-white dark:bg-gray-900">
-          <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
+        <div className="absolute top-0 -z-10 h-full w-full bg-white">
+          <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-gradient-to-r from-yellow-200/30 to-amber-200/30 opacity-60 blur-[80px]"></div>
         </div>
 
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 p-6 bg-white/30 dark:bg-gray-900/30 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-              Dan Realestate
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              Coming Soon
-            </div>
-          </div>
-        </nav>
-
-        {/* Main Content */}
-        <main className="flex flex-col items-center justify-center min-h-screen px-6 text-center pt-24 pb-32">
-          <div className="max-w-4xl mx-auto">
-            {/* Logo/Icon */}
-            <div className="mb-8">
-              <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/30">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  ></path>
-                </svg>
-              </div>
+        <main>
+          {/* Hero Section */}
+          <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center pt-24 pb-16 overflow-hidden">
+            {/* Background Image with Blur */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg"
+                alt="Luxury House Background"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
             </div>
 
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mb-4 tracking-tight">
-              Something Big is Coming
-            </h1>
-
-            <h2 className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-8">
-              Dan Realestate
-            </h2>
-
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Your premier destination for exceptional real estate
-              opportunities. We&apos;re crafting something amazing to help you
-              find your dream home.
-            </p>
-
-            {/* Countdown Timer */}
-            {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-lg mx-auto">
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white">
-                  {timeLeft.days}
-                </div>
-                <div className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  Days
-                </div>
-              </div>
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white">
-                  {timeLeft.hours}
-                </div>
-                <div className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  Hours
-                </div>
-              </div>
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white">
-                  {timeLeft.minutes}
-                </div>
-                <div className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  Minutes
-                </div>
-              </div>
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white">
-                  {timeLeft.seconds}
-                </div>
-                <div className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  Seconds
-                </div>
-              </div>
-            </div> */}
-
-            {/* Email Signup */}
-            <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl max-w-md mx-auto mb-12">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Be the first to know
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Get notified when we launch and receive exclusive early access
-                to premium listings.
-              </p>
-              <form className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 border border-transparent rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white/70 dark:bg-gray-700/70 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                >
-                  Notify Me
-                </button>
-              </form>
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto">
+              <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 mb-4 tracking-tight drop-shadow-lg">
+                DAN REAL ESTATE
+              </h1>
+              <h2 className="text-xl md:text-2xl font-medium text-white mb-8 drop-shadow-lg">
+                โปรเจค ซื้อ - ขาย โครงการ บ้าน ที่ดิน คอนโด ด้วย DAN TOKEN 100%
+              </h2>
+              <a
+                href="#about"
+                className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                Learn More
+              </a>
             </div>
+          </section>
 
-            {/* Features Preview */}
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                  <svg
-                    className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+          {/* About Section */}
+          <section
+            id="about"
+            className="py-24 bg-gradient-to-br from-white to-yellow-50"
+          >
+            <div className="max-w-4xl mx-auto px-6 text-center">
+              <SectionTitle>Real Estate Web3 คือ</SectionTitle>
+              <SectionSubtitle>
+                การนำแนวคิดและเทคโนโลยีของ Web3 หรืออินเทอร์เน็ตยุคใหม่
+                ที่เน้นการกระจายศูนย์ (Decentralization) และใช้เทคโนโลยีบล็อกเชน
+                มาประยุกต์ใช้กับอสังหาริมทรัพย์ เพื่อสร้างระบบที่เป็นอิสระ
+                โปร่งใส
+                และให้ผู้ใช้งานควบคุมข้อมูลและทรัพย์สินของตนเองได้มากขึ้น
+                โดยใช้สินทรัพย์ดิจิทัลอย่าง NFT เพื่อเป็นเจ้าของทรัพย์สิน, ใช้
+                Smart Contracts เพื่อทำธุรกรรมโดยอัตโนมัติ
+                และกระจายอำนาจการตัดสินใจในโครงการอสังหาฯ ไปสู่ชุมชนผู้ใช้งาน
+              </SectionSubtitle>
+            </div>
+          </section>
+
+          {/* Components Section */}
+          <section id="components" className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <SectionTitle>องค์ประกอบหลักของ Real Estate Web3</SectionTitle>
+              <SectionSubtitle>
+                เทคโนโลยีที่เป็นรากฐานสำคัญของแพลตฟอร์ม Dan Realestate
+              </SectionSubtitle>
+              <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+                {/* Blockchain */}
+                <div className="group bg-gradient-to-br from-white to-yellow-50 backdrop-blur-sm rounded-2xl p-8 border border-yellow-200 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7l8 4"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
+                    Blockchain
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    จัดเก็บข้อมูลธุรกรรมอย่างปลอดภัยและโปร่งใส
+                  </p>
+                </div>
+                {/* Decentralization */}
+                <div className="group bg-gradient-to-br from-white to-yellow-50 backdrop-blur-sm rounded-2xl p-8 border border-yellow-200 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.368a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
+                    Decentralization
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    ลดการควบคุมจากส่วนกลาง ให้ผู้ใช้มีส่วนร่วม
+                  </p>
+                </div>
+                {/* NFTs */}
+                <div className="group bg-gradient-to-br from-white to-yellow-50 backdrop-blur-sm rounded-2xl p-8 border border-yellow-200 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 6.253v11.494m-5.45-6.894l10.9 6.3M2.75 9.342l10.9 6.3M12 21.747L2.75 15.405m9.25 6.342l9.25-6.342M2.75 9.342L12 3.253m0 18.494L21.25 15.405"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
+                    NFTs
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    เป็นตัวแทนความเป็นเจ้าของทรัพย์สินในโลกดิจิทัล
+                  </p>
+                </div>
+                {/* DAPPs */}
+                <div className="group bg-gradient-to-br from-white to-yellow-50 backdrop-blur-sm rounded-2xl p-8 border border-yellow-200 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
+                    DAPPs
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    แอปพลิเคชันที่ทำงานบนบล็อกเชนเพื่อธุรกรรมที่ไร้รอยต่อ
+                  </p>
+                </div>
+                {/* Smart Contracts */}
+                <div className="group bg-gradient-to-br from-white to-yellow-50 backdrop-blur-sm rounded-2xl p-8 border border-yellow-200 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
+                    Smart Contracts
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    สัญญาอัจฉริยะที่ดำเนินการอัตโนมัติตามเงื่อนไข
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Benefits Section */}
+          <section
+            id="benefits"
+            className="py-24 bg-gradient-to-br from-yellow-50 to-white"
+          >
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <SectionTitle>ประโยชน์ของ Real Estate Web3</SectionTitle>
+              <SectionSubtitle>
+                ปลดล็อกศักยภาพใหม่ๆ ในการลงทุนอสังหาริมทรัพย์
+              </SectionSubtitle>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {/* Clear Ownership */}
+                <div className="group flex items-start text-left space-x-4 p-6 rounded-2xl transition-all duration-300 hover:bg-yellow-50/60">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H5v-2H3v-2H1v-4a6 6 0 016-6h4a6 6 0 016 6z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                      ความเป็นเจ้าของที่ชัดเจน
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      สิทธิ์ในทรัพย์สินดิจิทัลที่แสดงถึงทรัพย์สินจริง
+                    </p>
+                  </div>
+                </div>
+                {/* Transparency */}
+                <div className="group flex items-start text-left space-x-4 p-6 rounded-2xl transition-all duration-300 hover:bg-yellow-50/60">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                      ความโปร่งใส
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      ทุกธุรกรรมถูกบันทึกและตรวจสอบได้บนบล็อกเชน
+                    </p>
+                  </div>
+                </div>
+                {/* Lower Costs */}
+                <div className="group flex items-start text-left space-x-4 p-6 rounded-2xl transition-all duration-300 hover:bg-yellow-50/60">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1h4v1m-4 10v1h4v-1m-4-10a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                      ลดต้นทุนและตัวกลาง
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      ธุรกรรม Peer-to-Peer ช่วยลดค่าใช้จ่ายที่ไม่จำเป็น
+                    </p>
+                  </div>
+                </div>
+                {/* Global Access */}
+                <div className="group flex items-start text-left space-x-4 p-6 rounded-2xl transition-all duration-300 hover:bg-yellow-50/60">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.7 16.95l.005.005M11.2 16.95l.005.005M14.7 16.95l.005.005M6 11a6 6 0 1112 0 6 6 0 01-12 0z"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                      เข้าถึงได้ทั่วโลก
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      เปิดโอกาสให้นักลงทุนจากทั่วโลกซื้อขายได้ง่ายขึ้น
+                    </p>
+                  </div>
+                </div>
+                {/* Alternative Fundraising */}
+                <div className="group flex items-start text-left space-x-4 p-6 rounded-2xl transition-all duration-300 hover:bg-yellow-50/60">
+                  <FeatureIcon>
+                    <svg
+                      className="w-8 h-8 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                      />
+                    </svg>
+                  </FeatureIcon>
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                      การระดมทุนทางเลือก
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      ระดมทุนผ่านการออกโทเคนดิจิทัลหรือ NFT
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Gallery Section */}
+          <section id="gallery" className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <SectionTitle>โครงการของเรา</SectionTitle>
+              <SectionSubtitle>
+                พบกับโครงการบ้าน ที่ดิน
+                และคอนโดคุณภาพเยี่ยมที่เราคัดสรรมาเพื่อคุณ
+              </SectionSubtitle>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="group relative overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg"
+                    alt="Modern House"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h3 className="font-bold text-xl">
+                      บ้านเดี่ยวสไตล์โมเดิร์น
+                    </h3>
+                    <p className="text-sm">พื้นที่ใช้สอยกว้างขวาง</p>
+                  </div>
+                </div>
+                <div className="group relative overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg"
+                    alt="Luxury Condo"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h3 className="font-bold text-xl">คอนโดใจกลางเมือง</h3>
+                    <p className="text-sm">วิวสวย เดินทางสะดวก</p>
+                  </div>
+                </div>
+                <div className="group relative overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg"
+                    alt="Land for Sale"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h3 className="font-bold text-xl">ที่ดินเปล่าทำเลทอง</h3>
+                    <p className="text-sm">เหมาะสำหรับการลงทุน</p>
+                  </div>
+                </div>
+                <div className="group relative overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="https://images.pexels.com/photos/209274/pexels-photo-209274.jpeg"
+                    alt="Townhouse Project"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h3 className="font-bold text-xl">โครงการทาวน์โฮม</h3>
+                    <p className="text-sm">สังคมคุณภาพ น่าอยู่</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section
+            id="contact"
+            className="py-24 bg-gradient-to-br from-yellow-50 to-white"
+          >
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <div className="bg-gradient-to-br from-white to-yellow-50 backdrop-blur-sm rounded-2xl p-10 border border-yellow-200 shadow-xl max-w-2xl mx-auto">
+                <SectionTitle>เริ่มต้นกับเรา</SectionTitle>
+                <SectionSubtitle>
+                  รับข่าวสาร อัปเดต
+                  และข้อเสนอสุดพิเศษเกี่ยวกับโครงการอสังหาริมทรัพย์บน Web3
+                  ของเราก่อนใคร
+                </SectionSubtitle>
+                <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="flex-1 px-5 py-3 border border-yellow-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none bg-white text-gray-900 placeholder-gray-500 transition-all"
+                  />
+                  <button
+                    type="submit"
+                    className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Premium Listings
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Exclusive access to the finest properties in prime locations.
-                </p>
-              </div>
-
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                  <svg
-                    className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"
-                    ></path>
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Market Insights
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Data-driven insights to make informed real estate decisions.
-                </p>
-              </div>
-
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                  <svg
-                    className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                    ></path>
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Expert Guidance
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Professional support from experienced real estate experts.
-                </p>
+                    ลงทะเบียน
+                  </button>
+                </form>
               </div>
             </div>
-          </div>
+          </section>
         </main>
 
-        {/* Footer */}
-        <footer className="w-full p-6">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+        <footer className="w-full p-6 bg-gradient-to-r from-yellow-50 to-white">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
             <div className="mb-4 sm:mb-0">
               © {new Date().getFullYear()} Dan Realestate. All rights reserved.
             </div>
             <div className="flex space-x-6">
               <a
                 href="mailto:info@danrealestate.com"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="hover:text-yellow-600 transition-colors"
               >
                 Contact Us
               </a>
-              <a
-                href="#"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
+              <a href="#" className="hover:text-yellow-600 transition-colors">
                 Privacy Policy
               </a>
-              <a
-                href="#"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
+              <a href="#" className="hover:text-yellow-600 transition-colors">
                 Terms of Service
               </a>
             </div>
