@@ -11,6 +11,13 @@ export default function Document() {
         />
         <meta name="author" content="Dan Realestate" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="/font/prompt.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
       </Head>
       <body>
         <Main />
